@@ -1,5 +1,11 @@
 package ru.geekbrains.java_three;
 
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+import static ru.geekbrains.java_three.Main.*;
+
 public class Car implements Runnable {
     private static int COUNT;
 
@@ -10,6 +16,8 @@ public class Car implements Runnable {
     private Race race;
     private int speed;
     private String name;
+    private static CyclicBarrier collect = new CyclicBarrier(CARS_COUNT);
+    private static Lock lock = new ReentrantLock();
 
     public String getName() {
         return name;
@@ -32,11 +40,16 @@ public class Car implements Runnable {
             System.out.println(this.name + " готовится");
             Thread.sleep(500 + (int) (Math.random() * 800));
             System.out.println(this.name + " готов");
+            cdlStart.countDown();
+            collect.await();
         } catch (Exception e) {
             e.printStackTrace();
         }
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go(this);
         }
+        if (lock.tryLock())
+            System.out.println(this.name + " ПОБЕДИТЕЛЬ");
+        cdlStop.countDown();
     }
 }
