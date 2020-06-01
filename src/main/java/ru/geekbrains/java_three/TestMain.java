@@ -11,7 +11,7 @@ public class TestMain {
                 return testNew;
             }
         }
-        throw new RuntimeException("INPUT PACKET WITHOUT DELIMITER");
+        throw new RuntimeException("Не содержит цифры 4");
     }
 
     public static boolean test_2(int[] test) {
