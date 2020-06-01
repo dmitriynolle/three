@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Test {
+public class TestMainTest {
 
     @BeforeEach
     public void init() {
@@ -26,10 +27,9 @@ public class Test {
         List<Arguments> out = new ArrayList<>();
         int[][] a = {{1, 2, 4, 4, 2, 3, 4, 1, 7},
                 {1, 2, 4, 4, 2, 3, 1, 1, 7},
-                {1, 2, 4, 1, 2, 3, 1, 1, 7},
-                {1, 2, 3, 1, 2, 3, 1, 1, 7}};
-        int[][] result = {{1, 7}, {2, 3, 1, 1, 7}, {1, 2, 3, 1, 1, 7}, {1, 2, 3, 1, 2, 3, 1, 1, 7}};
-        for (int i = 0; i < 4; i++) {
+                {1, 2, 4, 1, 2, 3, 1, 1, 7}};
+        int[][] result = {{1, 7}, {2, 3, 1, 1, 7}, {1, 2, 3, 1, 1, 7}};
+        for (int i = 0; i < 3; i++) {
             out.add(Arguments.arguments(a[i], result[i]));
         }
         return out.stream();
@@ -57,5 +57,14 @@ public class Test {
             out.add(Arguments.arguments(a[i]));
         }
         return out.stream();
+    }
+
+    @Test
+    public void Test_HW6_2_Exception_ExtractFromPacket() {
+
+        Assertions.assertThrows(RuntimeException.class, ()-> {
+            int[] a = {3,3,5,6,8,9};
+            TestMain.test_1(a);
+        });
     }
 }
