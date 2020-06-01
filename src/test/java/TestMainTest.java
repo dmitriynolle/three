@@ -60,7 +60,7 @@ public class TestMainTest {
     }
 
     @Test
-    public void Test_HW6_2_Exception_ExtractFromPacket() {
+    public void Exception() {
 
         Assertions.assertThrows(RuntimeException.class, ()-> {
             int[] a = {3,3,5,6,8,9};
