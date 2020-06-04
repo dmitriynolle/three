@@ -42,7 +42,7 @@ public class TestMainTest {
     }
 
     @ParameterizedTest
-    @MethodSource("dataForAddOperation2")
+    @MethodSource("dataForAddOperation3")
     public void testFalse(int[] a) {
         Assertions.assertFalse(TestMain.test_2(a));
     }
@@ -50,10 +50,20 @@ public class TestMainTest {
     public static Stream<Arguments> dataForAddOperation2() {
         List<Arguments> out = new ArrayList<>();
         int[][] a = {{1, 1, 1, 4, 4, 1, 4, 4},
-                {4, 4, 4, 4, 4, 4, 4, 4, 4},
+                {4, 4, 4, 4, 4, 4, 4, 4, 1},
+                {4, 1, 1, 1, 1, 1, 1, 1, 1}};
+        for (int i = 0; i < 3; i++) {
+            out.add(Arguments.arguments(a[i]));
+        }
+        return out.stream();
+    }
+
+    public static Stream<Arguments> dataForAddOperation3() {
+        List<Arguments> out = new ArrayList<>();
+        int[][] a = {{4, 4, 4, 4, 4, 4, 4, 4, 4},
                 {1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {5, 2, 3, 5, 2, 3, 5, 6, 7}};
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             out.add(Arguments.arguments(a[i]));
         }
         return out.stream();
