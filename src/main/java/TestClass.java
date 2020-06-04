@@ -5,7 +5,7 @@ public class TestClass {
         System.out.println("After suite");
     }
 
-    @Test(priority = 1)
+    @Test()
     public static void method1() {
         System.out.println("Method 1");
     }
@@ -20,7 +20,7 @@ public class TestClass {
         System.out.println("Method 3");
     }
 
-    @Test(priority = 5)
+    @Test(priority = 1)
     public static void method4() {
         System.out.println("Method 4");
     }
